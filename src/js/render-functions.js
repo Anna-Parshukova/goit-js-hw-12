@@ -24,8 +24,6 @@ export const renderImages = (images) => {
   }).join('');
 
   gallery.insertAdjacentHTML('beforeend', imageCards);
-
-  new SimpleLightbox('.gallery a').refresh();
 };
 
 export const showLoading = () => {
