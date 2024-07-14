@@ -13,6 +13,45 @@ let lightbox = new SimpleLightbox('.gallery a');
 const form = document.getElementById('search-form');
 const loadMoreButton = document.getElementById('load-more');
 
+// form.addEventListener('submit', async (event) => {
+//   event.preventDefault();
+//   const query = document.getElementById('search-input').value.trim();
+
+//   if (!query) {
+//     iziToast.warning({ title: 'Warning', message: 'Search query cannot be empty!' });
+//     return;
+//   }
+
+//   if (query !== currentQuery) {
+//     currentQuery = query;
+//     resetPage();
+//     clearGallery();
+//     hideLoadMoreButton();
+//     fetchedImages = 0;
+//   }
+
+//   showLoading();
+
+//   try {
+//     const data = await fetchImages(query);
+//     totalHits = data.totalHits;
+//     fetchedImages += data.hits.length;
+//     renderImages(data.hits);
+//     lightbox.refresh();
+//     scrollPage();
+
+//     if (fetchedImages >= totalHits) {
+//       iziToast.info({ title: 'Info', message: "We're sorry, but you've reached the end of search results." });
+//       hideLoadMoreButton();
+//     } else {
+//       showLoadMoreButton();
+//     }
+//   } catch (error) {
+//     iziToast.error({ title: 'Error', message: error.message });
+//   } finally {
+//     hideLoading();
+//   }
+// });
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const query = document.getElementById('search-input').value.trim();
@@ -22,7 +61,7 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  if (query !== currentQuery) {
+  if (query!== currentQuery) {
     currentQuery = query;
     resetPage();
     clearGallery();
@@ -38,7 +77,6 @@ form.addEventListener('submit', async (event) => {
     fetchedImages += data.hits.length;
     renderImages(data.hits);
     lightbox.refresh(); 
-    scrollPage(); 
 
     if (fetchedImages >= totalHits) {
       iziToast.info({ title: 'Info', message: "We're sorry, but you've reached the end of search results." });
@@ -74,7 +112,6 @@ loadMoreButton.addEventListener('click', async () => {
   }
 });
 
-// Функція для прокручування сторінки
 function scrollPage() {
   const { height: cardHeight } = document
     .querySelector('.gallery')
